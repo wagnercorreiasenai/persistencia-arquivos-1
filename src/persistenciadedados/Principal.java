@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class Principal {
 
-    public static void main(String[] args) throws IOException {       
+    public static void main(String[] args) throws IOException {
         //Instâncias e declarações
         Scanner scan = new Scanner(System.in);
         ArrayList<Cliente> listaDeClientes = new ArrayList();
         String aux = "";
-        
+
         //Loop do menu do programa
         while(!aux.equals("sair")) {
             //Pergunta para o usuário
@@ -40,8 +40,14 @@ public class Principal {
             
         }
         
-        GerenciaDeDados.salvar(listaDeClientes);
+        //GerenciaDeDados.salvar(listaDeClientes);
+        listaDeClientes =  GerenciaDeDados.abrirArquivo();
+        
+        for (int i = 0; i < listaDeClientes.size(); i++) {
+            Cliente objCliente = listaDeClientes.get(i);
+            System.out.println(objCliente.nome);
+        }
         
     }
-    
+
 }

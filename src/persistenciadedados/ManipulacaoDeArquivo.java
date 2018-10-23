@@ -36,15 +36,16 @@ public class ManipulacaoDeArquivo {
         }
 
         String[] conteudo = new String[contador];
-        lerArq.reset();
+        FileReader arquivo2 = new FileReader(this.caminhoArquivo + "/" + this.nomeArquivo);
+        BufferedReader lerArqForArray = new BufferedReader(arquivo2);
         
         //Popula o array
-        linha = lerArq.readLine();
+        String novaLinha = lerArqForArray.readLine();
         contador = 0;
-        while (linha != null) {
-            conteudo [contador] = linha;
-            contador++;
-            linha = lerArq.readLine();
+        while (novaLinha != null) {
+            conteudo [contador] = novaLinha;
+            contador++;            
+            novaLinha = lerArqForArray.readLine();
         }
         
         return conteudo;
