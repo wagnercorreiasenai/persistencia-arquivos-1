@@ -1,11 +1,20 @@
 package persistenciadedados;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class GerenciaDeDados {
 
-    public static void salvar(ArrayList<Cliente> listaDeClientes) throws IOException {
+    public static void criarPastas() {
+        File f = new 
+        File("C:/Users/Suporte/Documents/"
+         + "NetBeansProjects/dados_de_clientes");
+        
+        f.mkdirs();
+    }
+    
+    public static void salvar(ArrayList<Cliente> listaDeClientes, boolean sobreescrever) throws IOException {
         //Varre o ArrayList
         String conteudoCsv = "";
         String linha = "";
@@ -18,15 +27,21 @@ public class GerenciaDeDados {
         }
 
         ManipulacaoDeArquivo arquivo
-                = new ManipulacaoDeArquivo("C:/Users/Suporte/Documents/NetBeansProjects",
+                = new ManipulacaoDeArquivo("C:/Users/Suporte/Documents/NetBeansProjects/dados_de_clientes",
                         "cadastro_de_clientes.csv");
-        arquivo.gravar(conteudoCsv);
+        
+        if (sobreescrever) {
+            arquivo.sobreEscrever(conteudoCsv);
+        } else {
+            arquivo.gravar(conteudoCsv);
+        }
+        
     }
 
     public static ArrayList<Cliente> abrirArquivo() throws IOException {
         ManipulacaoDeArquivo arquivo = 
                 new ManipulacaoDeArquivo
-        ("C:/Users/Suporte/Documents/NetBeansProjects",
+        ("C:/Users/Suporte/Documents/NetBeansProjects/dados_de_clientes",
                 "cadastro_de_clientes.csv");
         
         String[] linhas = arquivo.ler();

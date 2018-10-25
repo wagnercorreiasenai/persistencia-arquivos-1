@@ -17,6 +17,13 @@ public class ManipulacaoDeArquivo {
     }
 
     public void gravar(String conteudo) throws IOException {
+        FileWriter arquivoTxt = new FileWriter(this.caminhoArquivo + "/" + this.nomeArquivo, true);
+        PrintWriter gravarArq = new PrintWriter(arquivoTxt);
+        gravarArq.print(conteudo);
+        arquivoTxt.close();
+    }
+    
+    public void sobreEscrever(String conteudo) throws IOException {
         FileWriter arquivoTxt = new FileWriter(this.caminhoArquivo + "/" + this.nomeArquivo);
         PrintWriter gravarArq = new PrintWriter(arquivoTxt);
         gravarArq.print(conteudo);
